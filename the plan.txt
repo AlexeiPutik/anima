@@ -1,0 +1,55 @@
+1. Initial commit
+2. Authorization
+	.Sign Up
+	.Sign In
+
+3. Admin account
+
+4. User account
+
+5. User page
+	.Name
+	.Photo
+	.Button "Follow"
+	.Information
+
+6. Ability to follow
+
+7. Page with post
+	.Author
+	.Body
+	.Date
+
+8. Ability to upload music
+	.Page with music
+	.Filter
+	.Search
+
+9. Ability to download music
+
+10. Albums
+	.Photo
+	.Title
+	.Author
+	.Songs
+
+11. Page with song
+	.Author
+	.Title
+	.Photo(from album automatically/standart/personally)
+	.Bpm
+	.Duration
+
+12. Page with album
+	.Photo
+	.Title
+	.Songs
+	.Author
+	.Duration
+	.Genre
+
+13. Likes
+
+14. Comments
+
+15. Messages
