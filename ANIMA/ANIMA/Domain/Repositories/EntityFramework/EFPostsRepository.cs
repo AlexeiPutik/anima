@@ -2,6 +2,7 @@
 using ANIMA.Domain.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ANIMA.Domain.Repositories.EntityFramework
@@ -27,6 +28,11 @@ namespace ANIMA.Domain.Repositories.EntityFramework
             this.context.Posts.Remove(new Post { Id = id });
 
             this.context.SaveChanges();
+        }
+
+        public IEnumerable<Post> GetAllPosts()
+        {
+            return this.context.Posts.ToList();
         }
 
         public Post GetPost(Guid postId)

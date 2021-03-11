@@ -1,4 +1,6 @@
-﻿using ANIMA.Models;
+﻿using ANIMA.Domain;
+using ANIMA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,18 +11,19 @@ using System.Threading.Tasks;
 
 namespace ANIMA.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly DataManager dataManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(DataManager dataManager)
         {
-            _logger = logger;
+            this.dataManager = dataManager;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(new HomeViewModel(this.dataManager.PostsRepository.GetAllPosts()));
         }
 
         public IActionResult Privacy()

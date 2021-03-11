@@ -1,0 +1,28 @@
+﻿@model SignInViewModel
+
+<div id="main">
+    <div class="inner">
+        <div>
+            <h1>SIGN IN</h1>
+            <div>
+                <form asp-area="" asp-controller="Account" asp-action="SignIn" method="post" asp-route-returnUrl="@ViewBag.ReturnURL">
+                    <div asp-validation-summary="All"></div>
+                    <div>
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" />
+                        <span asp-validation-for="Email"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" />
+                        <span asp-validation-for="Password"></span>
+                    </div>
+                    <div>
+                        <input type="submit" value="SIGN IN" />
+                    </div>
+                </form>
+            </div>
+            <p>YOU ALSO CAN <a asp-controller="Account" asp-action="SignUp" asp-route-returnUrl="@ViewBag.ReturnURL">SIGN UP</a></p>
+        </div>
+    </div>
+</div>

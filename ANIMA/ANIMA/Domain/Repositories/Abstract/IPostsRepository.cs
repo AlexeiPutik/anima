@@ -8,6 +8,8 @@ namespace ANIMA.Domain.Repositories.Abstract
 {
     public interface IPostsRepository
     {
+        IEnumerable<Post> GetAllPosts();
+
         Post GetPost(Guid postId);
 
         IQueryable<Post> GetPostsFromAuthor(Guid authorId);

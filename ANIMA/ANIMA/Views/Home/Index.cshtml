@@ -1,8 +1,37 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @if (Model.Posts.Any())
+    {
+        <h2>
+            MOST LIKED <a asp-controller="Home" asp-action="Index">POSTS</a>.
+        </h2>
+
+        for (int i = 0; i < (Model.Posts.Count > 3 ? 3 : Model.Posts.Count); i++)
+        {
+            <div class="post">
+                <div class="post-author">
+                    <a>@Model.Posts[i].AuthorId</a>
+                    <p>@Model.Posts[i].Date</p>
+                </div>
+                <div>
+                    @if (Model.Posts[i].Text.Any())
+                    {
+                        <p>Model.Posts[i].Text</p>
+                    }
+                    @if (Model.Posts[i].SongId != Guid.Empty)
+                    {
+                        <a>@Model.Posts[i].SongId</a>
+                    }
+                    @if (Model.Posts[i].AlbumId != Guid.Empty)
+                    {
+                        <a>@Model.Posts[i].AlbumId</a>
+                    }
+                </div>
+            </div>
+        }
+    }
 </div>

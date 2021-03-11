@@ -3,8 +3,10 @@ using ANIMA.Domain.Entities;
 using ANIMA.Domain.Repositories.Abstract;
 using ANIMA.Domain.Repositories.EntityFramework;
 using ANIMA.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +29,7 @@ namespace ANIMA
         {
             Configuration.Bind("Project", new Config());
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IPostsRepository, EFPostsRepository>();
             services.AddTransient<DataManager>();
 
@@ -43,12 +46,16 @@ namespace ANIMA
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = "/account/signin";
-                options.AccessDeniedPath = "/account/accessdenied";
+                options.LoginPath = "/Account/SignIn";
+                options.AccessDeniedPath = "/Account/SignIn";
                 options.Cookie.Name = "ANIMAcookie";
                 options.Cookie.HttpOnly = true;
                 options.SlidingExpiration = true;
             });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            services.AddAuthorization();
 
             services.AddControllersWithViews().SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
         }
